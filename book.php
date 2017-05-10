@@ -77,7 +77,7 @@ fclose($fppage);
     <ul>
         <?php if (count($posts)) : ?>
             <?php $page = 0; ?>
-            <table><tr><th>日付</th><th>ページ</th><th>増分</th><th>残り</th></tr>
+            <table><tr><th>日付</th><th>ページ</th><th>増分</th><th>残り</th><th>進捗</th></tr>
             <?php foreach ($posts as $post) : ?>
                 <?php $prev_page = $page; 
                 list($ckdate, $page)=explode("\t",$post);?>
@@ -85,6 +85,7 @@ fclose($fppage);
                 <td><?php echo h($ckdate); ?></td><td><?php echo h($page); ?></td>
                 <td><?php echo ($page - $prev_page) ; ?></td>
                 <td><?php echo ($totalpage - $page) ; ?></td>
+                <td><?php echo ($page * 100 / $totalpage) ; ?></td>
                 </tr>
             <?php endforeach; ?>
             </table>
