@@ -10,12 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     
         $fp = fopen($pagefile ,"w");
         fwrite($fp, $_POST['totalpage'] );
+        fwrite($fp, $_POST['bookname'] );
         fclose($fp);
     }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     isset($_POST['ckdate']) &&
-    isset($_POST['page'])) {
+    trim($_POST['page']) != 0  ) {
     
     $ckdate = trim($_POST['ckdate']);
     $page = trim($_POST['page']);
@@ -32,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
 }
 $posts = file($datafile, FILE_IGNORE_NEW_LINES);
 $fppage = fopen($pagefile, 'r');
-
 $totalpage =  fgets($fppage);
+$bookname =  fgets($fppage);
 fclose($fppage);
 
 ?>
@@ -56,13 +57,14 @@ fclose($fppage);
         padding: 3px; 
     }
     th { background-color :#68c672; }
+    td { text-align: right ;}
     tr:nth-child(2n+1)  { 
         background-color : #e8ffe2  
     }
     </style>
 </head>
-<body>
-    <h1>BookFan</h1>
+<body  onload="init()">
+    <h1>BookFan 1.0</h1>
     <form action="" method="post">
         date: <input type="text" name="ckdate">
         page: <input type="text" name="page">
@@ -72,7 +74,8 @@ fclose($fppage);
     <a href="clear.php">データクリア</a><br>
     
     <h2>Status</h2>
-    総ページ数
+    <?php echo($bookname) ; ?>
+     / 総ページ数 
     <?php echo($totalpage) ; ?><br>
     <ul>
         <?php if (count($posts)) : ?>
@@ -85,7 +88,8 @@ fclose($fppage);
                 <td><?php echo h($ckdate); ?></td><td><?php echo h($page); ?></td>
                 <td><?php echo ($page - $prev_page) ; ?></td>
                 <td><?php echo ($totalpage - $page) ; ?></td>
-                <td><?php echo ($page * 100 / $totalpage) ; ?></td>
+                <?php $rate =  (int)($page * 100 / $totalpage) ; ?>
+                <td><?php echo $rate ; ?></td>
                 </tr>
             <?php endforeach; ?>
             </table>
@@ -93,5 +97,28 @@ fclose($fppage);
             <li>なし</li>
         <?php endif; ?>
     </ul>
+
+<canvas id="first" width="500" height="500"></canvas>
+
+<script>
+var canvas = document.getElementById('first');
+var ctx    = canvas.getContext('2d');
+function init(){
+//        var datalen = document.getElementById("datalen").value;
+    var datalen =  <?php echo json_encode($rate); ?>; 
+    //    alert(datalen);
+    datalen=datalen*2;
+    var grad  = ctx.createLinearGradient(20,0,200,0);
+    grad.addColorStop(0,'green');
+    grad.addColorStop(1,'yellow');
+	ctx.rect(20, 20, 200, 20);  // x,y,幅,高さ
+	ctx.lineWidth = 1;
+	ctx.stroke();	
+//	ctx.fillStyle = "blue";
+	ctx.fillStyle = grad;
+	ctx.fillRect(20, 20, datalen, 20);  // x,y,幅,高さ
+}
+</script>
+
 </body>
 </html>
