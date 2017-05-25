@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     $_POST['formtype'] =='newbook') {
     
         $fp = fopen($pagefile ,"w");
-        fwrite($fp, $_POST['totalpage'] );
-        fwrite($fp, $_POST['bookname'] );
+        fwrite($fp, $_POST['totalpage']."\n" );
+        fwrite($fp, $_POST['bookname']."\n" );
         fclose($fp);
     }
 
@@ -66,8 +66,8 @@ fclose($fppage);
 <body  onload="init()">
     <h1>BookFan 1.0</h1>
     <form action="" method="post">
-        date: <input type="text" name="ckdate">
-        page: <input type="text" name="page">
+        date: <input type="text" name="ckdate" size="5">
+        page: <input type="text" name="page" size="5">
         <input type="submit" value="投稿">
     </form>
     <a href="newbook.php">新規</a><br>
