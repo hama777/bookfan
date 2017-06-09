@@ -43,12 +43,8 @@ fclose($fppage);
 <head>
     <meta charset="utf-8">
     <STYLE TYPE="Text/css">
-    h1 {
-        font-size: 15px;
-    }
-    h2 {
-        font-size: 13px;
-    }
+    h1 { font-size: 15px; }
+    h2 { font-size: 13px; }
     table, td, th { 
         font-family: "Meiryo UI" ; 
         font-size: 13px; 
@@ -61,18 +57,61 @@ fclose($fppage);
     tr:nth-child(2n+1)  { 
         background-color : #e8ffe2  
     }
+    ul.menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0;
+      }
+    ul.menu li {
+        display: inline-block;
+      }
+    ul.menu li a  {
+        font-size: 14px;
+        display: inline-block;
+        width: 100px;
+        height: 18px;
+        border-radius: 10px;
+        line-height: 18px;
+        text-align: center;
+        text-decoration: none;
+        padding: 7px;
+        color: #333;
+    }
+
+    ul.menu li:nth-child(even) a  {
+        // background: linear-gradient(top center, #fad 0%, #f7a 100%);
+        // background: -moz-linear-gradient(top center, #fad 0%, #f7a 100%);
+        background: -webkit-gradient(linear, center top, center bottom, from(#96e8a5), to(#00cc63));
+    }
+    ul.menu li:nth-child(even):hover a  {
+        background: #ceedc9;
+    }
+
+    ul.menu li:nth-child(odd) a  {
+        // background: linear-gradient(top center, #fad 0%, #f7a 100%);
+        // background: -moz-linear-gradient(top center, #fad 0%, #f7a 100%);
+        background: -webkit-gradient(linear, center top, center bottom, from(#e2edbc), to(#bfed3f));
+    }
+    ul.menu li:nth-child(odd):hover a  {
+        background: #d6efe2;
+    }
+
     </style>
 </head>
 <body  onload="init()">
     <h1>BookFan 1.0</h1>
+    <ul class="menu">
+        <li><a href="newbook.php">新規</a><br></li>
+        <li><a href="clear.php">データクリア</a></li>
+    </ul>
+    <br>
     <form action="" method="post">
         date: <input type="text" name="ckdate" size="5">
         page: <input type="text" name="page" size="5">
         <input type="submit" value="投稿">
     </form>
-    <a href="newbook.php">新規</a><br>
-    <a href="clear.php">データクリア</a><br>
-    
+
     <h2>Status</h2>
     <?php echo($bookname) ; ?>
      / 総ページ数 
