@@ -7,12 +7,11 @@ function h($s) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     $_POST['formtype'] =='newbook') {
-    
         $fp = fopen($pagefile ,"w");
         fwrite($fp, $_POST['totalpage']."\n" );
         fwrite($fp, $_POST['bookname']."\n" );
         fclose($fp);
-    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' &&
     isset($_POST['ckdate']) &&
@@ -69,7 +68,7 @@ fclose($fppage);
     ul.menu li a  {
         font-size: 14px;
         display: inline-block;
-        width: 100px;
+        width: 80px;
         height: 18px;
         border-radius: 10px;
         line-height: 18px;
@@ -80,8 +79,6 @@ fclose($fppage);
     }
 
     ul.menu li:nth-child(even) a  {
-        // background: linear-gradient(top center, #fad 0%, #f7a 100%);
-        // background: -moz-linear-gradient(top center, #fad 0%, #f7a 100%);
         background: -webkit-gradient(linear, center top, center bottom, from(#96e8a5), to(#00cc63));
     }
     ul.menu li:nth-child(even):hover a  {
@@ -89,8 +86,6 @@ fclose($fppage);
     }
 
     ul.menu li:nth-child(odd) a  {
-        // background: linear-gradient(top center, #fad 0%, #f7a 100%);
-        // background: -moz-linear-gradient(top center, #fad 0%, #f7a 100%);
         background: -webkit-gradient(linear, center top, center bottom, from(#e2edbc), to(#bfed3f));
     }
     ul.menu li:nth-child(odd):hover a  {
@@ -100,10 +95,11 @@ fclose($fppage);
     </style>
 </head>
 <body  onload="init()">
-    <h1>BookFan 1.0</h1>
+    <h1>BookFan 1.1</h1>
     <ul class="menu">
         <li><a href="newbook.php">新規</a><br></li>
-        <li><a href="clear.php">データクリア</a></li>
+        <li><a href="linedelete.php">1行削除</a></li>
+        <li><a href="clear.php">全クリア</a></li>
     </ul>
     <br>
     <form action="" method="post">
@@ -136,9 +132,7 @@ fclose($fppage);
             <li>なし</li>
         <?php endif; ?>
     </ul>
-
 <canvas id="first" width="500" height="500"></canvas>
-
 <script>
 var canvas = document.getElementById('first');
 var ctx    = canvas.getContext('2d');
@@ -158,6 +152,5 @@ function init(){
 	ctx.fillRect(20, 20, datalen, 20);  // x,y,幅,高さ
 }
 </script>
-
 </body>
 </html>
