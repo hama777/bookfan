@@ -1,5 +1,15 @@
 <?php
-$datafile = 'book.txt';
+
+if ($_POST['type'] == 1  ) {
+    $datafile = "book.txt" ;
+}
+if ($_POST['type'] == 2  ) {
+    $datafile = "book2.txt" ;
+}
+if ($_POST['type'] == 3  ) {
+    $datafile = "book3.txt" ;
+}
+
 $tmpfile = 'booktmp.txt';
 $fpdata = fopen($datafile, 'r');
 $fptmp  = fopen($tmpfile, 'w');
@@ -13,15 +23,7 @@ while ($line = fgets($fpdata)) {
 fclose($fpdata);
 fclose($fptmp);
 rename($tmpfile , $datafile);
+echo '<meta http-equiv="refresh" content="0;URL=book.php">' ;
+
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-</head>
-<body>
-完了
-<a href="book.php">戻る</a><br>
-</body>
-</html>
