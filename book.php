@@ -197,7 +197,14 @@ fclose($fppage);
     }
 
     #one{
-     /*   display : none;*/
+        background: #ccfcff;
+        /*display : none;*/
+    }
+    #two{
+        background: #ffffd8;
+    }
+    #three{
+        background: #fce2ff;
     }
 
     /* clearfix */
@@ -221,7 +228,7 @@ fclose($fppage);
 <body  onload="init()">
     <h1>BookFan 2</h1>
     <div class="boxContainer">
-        <div id="one" class="box" >
+        <div id="one"  class="box">
             <form action="newbook.php" method="post">
                 <input type="hidden" name="type" value="1">
                 <input class="btn"  type="submit" value="新規">
@@ -419,4 +426,3 @@ function init(){
 </script>
 </body>
 </html>
-	
