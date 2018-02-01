@@ -11,9 +11,7 @@ if ($_POST['type'] == 3  ) {
     $filename = "bookinfo3.txt" ;
 }
 
-echo $_POST['type'] ; 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
-    echo "Open" ;
         $fp = fopen($filename ,"w");
         fwrite($fp, $_POST['totalpage']."\n" );
         fwrite($fp, $_POST['bookname']."\n" );
