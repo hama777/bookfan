@@ -103,6 +103,7 @@ fclose($fppage);
 <html lang="ja">
 <head>
     <meta charset="utf-8">
+    <link rel="icon" href="./favicon.ico">
     <STYLE TYPE="Text/css">
     h1 { font-size: 15px; }
     h2 { font-size: 13px; }
