@@ -186,7 +186,7 @@ fclose($fppage);
     .box {
 	    float: left;
         width : 300px;
-        height : 600px;
+        height : 700px;
         border-radius: 10px;
         border: 1px #1C79C6 solid;  
         padding: 20px 10px ; 
